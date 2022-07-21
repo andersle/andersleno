@@ -8,6 +8,7 @@ HTML build for the nodebooks.
 
    posts/2022/rdkitandpy3dmol/caffeine.ipynb
    posts/2022/rdkitandpy3dmol/explore.ipynb
+   posts/2022/drawfingerprint/drawfingerprint.ipynb
 
 
 Indices and tables
