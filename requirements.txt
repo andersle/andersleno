@@ -8,3 +8,7 @@ matplotlib
 rdkit
 py3Dmol
 ipywidgets
+sphinx
+nbsphinx
+pydata-sphinx-theme
+lxml
