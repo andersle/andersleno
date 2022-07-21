@@ -1,0 +1,10 @@
+numpy
+scipy
+Cython
+pandas
+sklearn
+statsmodels
+matplotlib
+rdkit
+py3Dmol
+ipywidgets
