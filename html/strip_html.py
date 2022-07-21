@@ -1,4 +1,5 @@
 import pathlib
+import urllib
 from lxml import etree
 import lxml.html
 
@@ -35,6 +36,18 @@ def extract_article(html_file):
 
     with open(html_output, "w") as output:
         output.write(article_txt)
+
+    notebook_path = urllib.parse.quote(
+        str(html_file.relative_to("build/html/posts").with_suffix(".ipynb")),
+        safe="",
+    )
+
+    rst_binder = f""".. image:: https://mybinder.org/badge_logo.svg
+   :target: https://mybinder.org/v2/gh/andersle/andersleno/main?urlpath=/tree/{notebook_path}"""
+
+    rst_output = html_file.parent / "link.rst"
+    with open(rst_output, "w") as output:
+        output.write(rst_binder)
 
 
 def main():
