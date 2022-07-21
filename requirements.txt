@@ -12,3 +12,4 @@ sphinx
 nbsphinx
 pydata-sphinx-theme
 lxml
+fortecubeview
