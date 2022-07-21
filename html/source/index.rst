@@ -7,6 +7,7 @@ HTML build for the nodebooks.
    :caption: Contents:
 
    posts/2022/rdkitandpy3dmol/caffeine.ipynb
+   posts/2022/rdkitandpy3dmol/explore.ipynb
 
 
 Indices and tables

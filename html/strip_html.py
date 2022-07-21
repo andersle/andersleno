@@ -25,9 +25,9 @@ def extract_article(html_file):
 
     article_txt = "\n".join(articles)
 
-    style_output = html_file.parent / "style-nbsphinx.css"
+    style_name = html_file.with_suffix(".css")
 
-    with open(style_output, "w") as output:
+    with open(style_name, "w") as output:
         output.write(style.text)
 
     article_name = f"article-{html_file.name}"
@@ -45,7 +45,7 @@ def extract_article(html_file):
     rst_binder = f""".. image:: https://mybinder.org/badge_logo.svg
    :target: https://mybinder.org/v2/gh/andersle/andersleno/main?urlpath=/tree/{notebook_path}"""
 
-    rst_output = html_file.parent / "link.rst"
+    rst_output = html_file.with_suffix(".rst")
     with open(rst_output, "w") as output:
         output.write(rst_binder)
 
