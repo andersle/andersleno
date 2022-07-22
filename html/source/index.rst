@@ -9,6 +9,7 @@ HTML build for the nodebooks.
    posts/2022/rdkitandpy3dmol/caffeine.ipynb
    posts/2022/rdkitandpy3dmol/explore.ipynb
    posts/2022/drawfingerprint/drawfingerprint.ipynb
+   posts/2022/mo/ethene.ipynb
 
 
 Indices and tables
