@@ -5,6 +5,7 @@ pandas
 sklearn
 statsmodels
 matplotlib
+seaborn
 rdkit
 py3Dmol
 ipywidgets
@@ -12,3 +13,7 @@ sphinx
 nbsphinx
 pydata-sphinx-theme
 lxml
+fortecubeview
+pythreejs
+scikit-image
+pyscf
