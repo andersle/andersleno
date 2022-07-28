@@ -16,8 +16,8 @@ def find_html_files():
 def extract_article(html_file):
     parser = etree.HTMLParser()
     tree = etree.parse(html_file, parser)
-    article = tree.xpath("//article")[0]
-    style = tree.xpath("//article/style")[0]
+    article = tree.xpath("//main/div")[0]
+    style = tree.xpath("//main/div/style")[0]
     articles = []
     for node in article.iterchildren():
         if node.tag != "style":
