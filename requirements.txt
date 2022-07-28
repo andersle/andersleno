@@ -17,3 +17,5 @@ fortecubeview
 pythreejs
 scikit-image
 pyscf
+shap
+catboost
