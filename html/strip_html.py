@@ -17,11 +17,17 @@ def extract_article(html_file):
     parser = etree.HTMLParser()
     tree = etree.parse(html_file, parser)
     article = tree.xpath("//main/div")[0]
+    sections = tree.xpath("//section")
     style = tree.xpath("//main/div/style")[0]
     articles = []
     for node in article.iterchildren():
         if node.tag != "style":
             articles.append(lxml.html.tostring(node).decode("utf-8"))
+
+    for i, section in enumerate(sections):
+        section_name = html_file.parent / f"section-{i+1}-{html_file.name}"
+        with open(section_name, "w") as output:
+            output.write(lxml.html.tostring(section).decode("utf-8"))
 
     article_txt = "\n".join(articles)
 
@@ -53,6 +59,7 @@ def extract_article(html_file):
 def main():
     files = find_html_files()
     for filei in files:
+        print(f"Reading {filei.name}")
         extract_article(filei)
 
 
