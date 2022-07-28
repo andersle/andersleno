@@ -13,28 +13,49 @@ def find_html_files():
     return html_files
 
 
-def extract_article(html_file):
-    parser = etree.HTMLParser()
-    tree = etree.parse(html_file, parser)
-    article = tree.xpath("//main/div")[0]
-    sections = tree.xpath("//section")
-    style = tree.xpath("//main/div/style")[0]
-    articles = []
-    for node in article.iterchildren():
-        if node.tag != "style":
-            articles.append(lxml.html.tostring(node).decode("utf-8"))
+def _modify_img(html_file, tree):
+    img = tree.xpath("//img")
+    for node in img:
+        alt = pathlib.Path(node.get("alt")).name
+        node.attrib["alt"] = alt
+        src = pathlib.Path(node.get("src")).name
+        path1 = html_file.parents[0]
+        path2 = html_file.parents[2]
+        path = str(path1.relative_to(path2))
+        node.attrib["src"] = f"../../../_static/images/{path}/{src}"
 
+
+def _save_sections(html_file, tree):
+    sections = tree.xpath("//section")
     for i, section in enumerate(sections):
         section_name = html_file.parent / f"section-{i+1}-{html_file.name}"
         with open(section_name, "w") as output:
             output.write(lxml.html.tostring(section).decode("utf-8"))
 
-    article_txt = "\n".join(articles)
 
+def _save_style(html_file, tree):
+    style = tree.xpath("//main/div/style")[0]
     style_name = html_file.with_suffix(".css")
 
     with open(style_name, "w") as output:
         output.write(style.text)
+
+
+def extract_article(html_file):
+    parser = etree.HTMLParser()
+    tree = etree.parse(html_file, parser)
+    article = tree.xpath("//main/div")[0]
+
+    _modify_img(html_file, tree)
+    _save_sections(html_file, tree)
+    _save_style(html_file, tree)
+
+    articles = []
+    for node in article.iterchildren():
+        if node.tag != "style":
+            articles.append(lxml.html.tostring(node).decode("utf-8"))
+
+    article_txt = "\n".join(articles)
 
     article_name = f"article-{html_file.name}"
 
