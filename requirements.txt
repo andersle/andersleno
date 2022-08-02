@@ -19,3 +19,4 @@ scikit-image
 pyscf
 shap
 catboost
+graphviz
