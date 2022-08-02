@@ -34,7 +34,8 @@ def _save_sections(html_file, tree):
 
 
 def _save_style(html_file, tree):
-    style = tree.xpath("//main/div/style")[0]
+    #style = tree.xpath("//main/div/style")[0]
+    style = tree.xpath("//article/style")[0]
     style_name = html_file.with_suffix(".css")
 
     with open(style_name, "w") as output:
@@ -44,7 +45,8 @@ def _save_style(html_file, tree):
 def extract_article(html_file):
     parser = etree.HTMLParser()
     tree = etree.parse(html_file, parser)
-    article = tree.xpath("//main/div")[0]
+    #article = tree.xpath("//main/div")[0]
+    article = tree.xpath("//article")[0]
 
     _modify_img(html_file, tree)
     _save_sections(html_file, tree)
